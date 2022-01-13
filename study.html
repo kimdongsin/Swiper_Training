@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <title>과제 1 (인기, 팔로우 두개) xSwiper와 연결시켜서 해보기</title>
+
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper {
+            width: 1004px;
+            height: 187px;
+            border-radius: 20px;
+        }
+
+        .swiper-slide {
+            border-radius: 20px;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-button-next {
+            background: url(./next.png);
+            background-size: auto;
+            background-position: center;
+            width: 48px;
+            height: 48px;
+            position: initial;
+            transform: translate(0%, 25%);
+            margin-left: 40px;
+        }
+
+        .swiper-button-next2 {
+            background: url(./next.png);
+            background-size: auto;
+            background-position: center;
+            width: 48px;
+            height: 48px;
+            position: initial;
+            transform: translate(0%, 25%);
+            margin-left: 40px;
+        }
+
+        .swiper-button-next3 {
+            background: url(./next.png);
+            background-size: auto;
+            background-position: center;
+            width: 48px;
+            height: 48px;
+            position: initial;
+            transform: translate(0%, 25%);
+            margin-left: 40px;
+        }
+
+        .swiper-button-next::after {
+            display: none;
+            right: 0px;
+        }
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        .container__main {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container__main>h1 {
+            font-size: 24px;
+            color: #6A3E30;
+            margin-bottom: 25px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .margin1 {
+            margin-top: 87px;
+        }
+
+        .conT>h1 {
+            font-size: 24px;
+            color: #6A3E30;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .hei {
+            height: 427px;
+            border-radius: 0px;
+        }
+
+        .hot2__box1__text {
+            text-align: start;
+        }
+
+        .c {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        @media only screen and (max-width: 426px) {
+            .swiper-button-next {
+                display: none;
+            }
+
+            .swiper-button-next2 {
+                display: none;
+            }
+
+            .swiper-button-next3 {
+                display: none;
+            }
+
+            .swiper {
+                width: 360px;
+            }
+        }
+
+        @media only screen and (max-width: 376px) {
+            .swiper-button-next {
+                display: none;
+            }
+
+            .swiper-button-next2 {
+                display: none;
+            }
+
+            .swiper-button-next3 {
+                display: none;
+            }
+
+            .swiper {
+                width: 320px;
+            }
+
+            .swiper-slide > div{
+                width: 280px;
+                border-radius: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 321px) {
+            .swiper-button-next {
+                display: none;
+            }
+
+            .swiper-button-next2 {
+                display: none;
+            }
+
+            .swiper-button-next3 {
+                display: none;
+            }
+
+            .swiper {
+                width: 270px;
+            }
+
+            .swiper-slide > div{
+                width: 240px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Swiper -->
+    <div class="container">
+        <div class="container__main margin1">
+            <h1>인기</h1>
+            <div class="c">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="main__hot_gr">
+                                <div class="hot__gr__box1">
+                                    <p>제목이</p>
+                                    <img src="./image/옵션.png">
+                                </div>
+
+                                <p class="hot__gr__box2">표시됩니다</p>
+                                <p class="hot__gr__box3">별명</p>
+
+                                <div class="hot__gr__box4">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8392.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide">
+                                <div class="main__hot_gr2">
+                                    <div class="hot__gr__box1">
+                                        <p>제목이</p>
+                                        <img src="./image/옵션.png">
+                                    </div>
+
+                                    <p class="hot__gr__box2">표시됩니다</p>
+                                    <p class="hot__gr__box3">별명</p>
+
+                                    <div class="hot__gr__box4">
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8388.png">
+                                            <p>99</p>
+                                        </div>
+
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8390.png">
+                                            <p>99</p>
+                                        </div>
+
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8392.png">
+                                            <p>99</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="main__hot_gr3">
+                                <div class="hot__gr__box1">
+                                    <p>제목이</p>
+                                    <img src="./image/옵션.png">
+                                </div>
+
+                                <p class="hot__gr__box2">표시됩니다</p>
+                                <p class="hot__gr__box3">별명</p>
+
+                                <div class="hot__gr__box4">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8392.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            테스트
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+            </div>
+
+            <!--화살표-->
+        </div>
+
+        <div class="container__main margin1">
+            <h1>최신</h1>
+            <div class="c">
+                <div class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="main__hot_gr4">
+                                <div class="hot__gr__box1">
+                                    <p>제목이</p>
+                                    <img src="./image/옵션.png">
+                                </div>
+
+                                <p class="hot__gr__box2">표시됩니다</p>
+                                <p class="hot__gr__box3">별명</p>
+
+                                <div class="hot__gr__box4">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8392.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="swiper-slide">
+                                <div class="main__hot_gr5">
+                                    <div class="hot__gr__box1">
+                                        <p>제목이</p>
+                                        <img src="./image/옵션.png">
+                                    </div>
+
+                                    <p class="hot__gr__box2">표시됩니다</p>
+                                    <p class="hot__gr__box3">별명</p>
+
+                                    <div class="hot__gr__box4">
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8388.png">
+                                            <p>99</p>
+                                        </div>
+
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8390.png">
+                                            <p>99</p>
+                                        </div>
+
+                                        <div class="gr__box4__c1">
+                                            <img src="./image/그룹 8392.png">
+                                            <p>99</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="main__hot_gr6">
+                                <div class="hot__gr__box1">
+                                    <p>제목이</p>
+                                    <img src="./image/옵션.png">
+                                </div>
+
+                                <p class="hot__gr__box2">표시됩니다</p>
+                                <p class="hot__gr__box3">별명</p>
+
+                                <div class="hot__gr__box4">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/그룹 8392.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            테스트
+                        </div>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="swiper-button-next2"></div>
+            </div>
+
+            <!--화살표-->
+        </div>
+
+        <div class="conT margin1">
+            <h1>팔로잉</h1>
+            <div class="c">
+                <div class="swiper mySwiper3 hei">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide hei">
+                            <div class="main__hot2__box1">
+                                <div class="hot2__box1__c1">
+                                    <div class="box1__c1__bo1">
+                                        <img src="./image/main/Rectangle1.png" alt="프로필1">
+                                        <p>닉네임</p>
+                                    </div>
+
+                                    <img src="./image/옵션2.png" alt="메뉴">
+                                </div>
+
+                                <img src="./image/main/사각형 2321.png" alt="배경1">
+
+                                <div class="hot2__box1__text">
+                                    <p>제목이 표시됩니다</p>
+                                    <p>각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 모든 국민은 신체의 자유를
+                                        가진다.
+                                    </p>
+                                </div>
+
+                                <div class="hot2__box1__icon">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8572.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8573.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide hei">
+                            <div class="main__hot2__box1 --mar2">
+                                <div class="hot2__box1__c1">
+                                    <div class="box1__c1__bo1">
+                                        <img src="./image/main/Rectangle2.png" alt="프로필1">
+                                        <p>닉네임</p>
+                                    </div>
+
+                                    <img src="./image/옵션2.png" alt="메뉴">
+                                </div>
+
+                                <img src="./image/main/사각형 2322.png" alt="배경1">
+
+                                <div class="hot2__box1__text">
+                                    <p>제목이 표시됩니다</p>
+                                    <p>각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 모든 국민은 신체의 자유를
+                                        가진다.
+                                    </p>
+                                </div>
+
+                                <div class="hot2__box1__icon">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8391.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide hei">
+                            <div class="main__hot2__box1">
+                                <div class="hot2__box1__c1">
+                                    <div class="box1__c1__bo1">
+                                        <img src="./image/main/Rectangle3.png" alt="프로필1">
+                                        <p>닉네임</p>
+                                    </div>
+
+                                    <img src="./image/옵션2.png" alt="메뉴">
+                                </div>
+
+                                <img src="./image/main/사각형 2323.png" alt="배경1">
+
+                                <div class="hot2__box1__text">
+                                    <p>제목이 표시됩니다</p>
+                                    <p>각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다. 모든 국민은 신체의 자유를
+                                        가진다.
+                                    </p>
+                                </div>
+
+                                <div class="hot2__box1__icon">
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8388.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8391.png">
+                                        <p>99</p>
+                                    </div>
+
+                                    <div class="gr__box4__c1">
+                                        <img src="./image/main/그룹 8390.png">
+                                        <p>99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            테스트
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="swiper-button-next3"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script src="./study.js"></script>
+</body>
+
+</html>
